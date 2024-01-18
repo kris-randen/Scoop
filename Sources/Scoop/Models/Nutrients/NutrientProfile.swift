@@ -21,7 +21,7 @@ public protocol NutrientProfileable: Summable, Multipliable {
     var description: String { get }
     var type: NutrientValueType { get }
     var intakes: NutrientIntakes { get set }
-    var serving: Serving { get }
+    var serving: Serving { get set }
     var nqi: Double { get }
     var energy: Energy { get set }
 }
@@ -50,7 +50,8 @@ public extension NutrientProfileable {
     }
     
     mutating func multiply(_ factor: Double) {
-        self.intakes = factor * self.intakes
+        serving = Serving(value: serving.value * factor, unit: serving.unit)
+        intakes = factor * intakes
     }
     
     var food: String {
@@ -201,7 +202,7 @@ public extension NutrientProfileable {
 
 @available(iOS 15.0, *)
 public protocol ServeableNutrientProfile: NutrientProfileable {
-    var serving: Serving { get }
+    var serving: Serving { get set }
 }
 
 @available(iOS 15.0, *)
