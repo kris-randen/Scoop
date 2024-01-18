@@ -707,5 +707,7 @@ public struct Constants {
     
     public struct NavigationTitle {
         public static let foodItem = "Food Item"
+        public static let groceryList = "Grocery List"
+        public static let addItem = "Add Item"
     }
 }

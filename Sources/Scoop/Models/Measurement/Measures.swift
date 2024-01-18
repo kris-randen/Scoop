@@ -51,9 +51,21 @@ public struct Volume: ConvertibleMeasure {
 }
 
 @available(iOS 15.0, *)
-public struct Energy: ConvertibleMeasure {
+public struct Energy: ConvertibleMeasure, Summable {
     public typealias Unit = Units.Energy
     public let unit: Units.Energy
     public var value: Double
     public static var dailyValue: Double = 2000
+    
+    public init(unit: Units.Energy = .kcal, value: Double = 0) {
+        self.unit = unit
+        self.value = value
+    }
+}
+
+@available(iOS 15.0, *)
+public extension Energy {
+    mutating func add(_ other: Energy) {
+        self.value += other.conversion(to: unit)
+    }
 }

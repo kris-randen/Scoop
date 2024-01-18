@@ -17,13 +17,13 @@ import Foundation
 import OrderedCollections
 
 @available(iOS 15.0, *)
-public protocol NutrientProfileable: Multipliable {
+public protocol NutrientProfileable: Summable, Multipliable {
     var description: String { get }
     var type: NutrientValueType { get }
     var intakes: NutrientIntakes { get set }
     var serving: Serving { get }
-    
     var nqi: Double { get }
+    var energy: Energy { get set }
 }
 
 @available(iOS 15.0, *)
@@ -41,6 +41,12 @@ public extension NutrientProfileable {
     
     var nqiFactor: Double {
         Constants.DRI.energy / energy
+    }
+    
+    mutating func add(_ other: Self) {
+        self.intakes = self.intakes + other.intakes
+        /// Add energies too!!
+        self.energy = self.energy + other.energy
     }
     
     mutating func multiply(_ factor: Double) {
@@ -201,10 +207,27 @@ public protocol ServeableNutrientProfile: NutrientProfileable {
 @available(iOS 15.0, *)
 public struct NutrientProfile: NutrientProfileable, NQIconvertible, Scalable, DailyValueScaleable {
     public var intakes: NutrientIntakes
-    public var description: String
-    public var type: NutrientValueType
-    public var serving: Serving = Serving(value: 100, unit: .gm)
-    var energy = Energy(unit: .kcal, value: 0)
+    public var description: String = "Grocery List"
+    public var type: NutrientValueType = .value
+    public var serving: Serving = Serving()
+    public var energy = Energy()
+    
+    public init() {
+        self.intakes = NutrientIntakes()
+    }
+    
+    public init(
+        intakes: NutrientIntakes = NutrientIntakes(),
+        description: String = "Grocery List",
+        type: NutrientValueType = .value,
+        serving: Serving = Serving(),
+        energy: Energy = Energy()) {
+            self.intakes = intakes
+            self.description = description
+            self.type = type
+            self.serving = serving
+            self.energy = energy
+        }
 }
 
 @available(iOS 15.0, *)
@@ -239,6 +262,26 @@ public extension NutrientProfile {
         nqiProfile.type = .nqi
         nqiProfile.intakes = intakes.convertedToNQI(for: energy)
         return nqiProfile
+    }
+}
+
+@available(iOS 15.0, *)
+public protocol Summable {
+    mutating func add(_ other: Self)
+    func sum(with other: Self) -> Self
+    static func +(lhs: Self, rhs: Self) -> Self
+}
+
+@available(iOS 15.0, *)
+public extension Summable {
+    func sum(with other: Self) -> Self {
+        var result = self
+        result.add(other)
+        return result
+    }
+    
+    static func +(lhs: Self, rhs: Self) -> Self {
+        lhs.sum(with: rhs)
     }
 }
 
@@ -294,6 +337,7 @@ public struct NutrientProfileServed: ServeableNutrientProfile {
     public var serving: Serving = Serving(value: 100, unit: .gm)
     public var description: String
     public var type: NutrientValueType
+    public var energy: Energy = Energy()
 }
 
 

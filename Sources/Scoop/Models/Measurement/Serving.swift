@@ -35,6 +35,11 @@ public struct Serving {
     var value: Double = 100
     var unit: Units.Mass = .gm
     
+    public init(value: Double = 100, unit: Units.Mass = .gm) {
+        self.value = value
+        self.unit = unit
+    }
+    
     public struct Volume: ConvertibleMeasure {
         public typealias Unit = Units.Volume
         public var unit: Unit = .ml

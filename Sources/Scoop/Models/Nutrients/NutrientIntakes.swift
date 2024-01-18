@@ -40,7 +40,7 @@ public protocol Scalable {
 
 
 @available(iOS 15.0, *)
-public protocol Intakeable: Multipliable, NQIconvertible, Scalable, DailyValueScaleable {
+public protocol Intakeable: Summable, Multipliable, NQIconvertible, Scalable, DailyValueScaleable {
     associatedtype NutrientKey: NutrientType
     typealias Intakes = OrderedDictionary<NutrientKey, Double>
     var intakes: Intakes { get set }
@@ -92,6 +92,15 @@ public extension OrderedDictionary where Key: NutrientType, Value == Double {
 
 @available(iOS 15.0, *)
 public extension Intakeable {
+    mutating func add(_ other: Self) {
+        for (key, _) in intakes {
+            intakes[key] = intakes[key]! + (other.intakes[key] ?? 0)
+        }
+    }
+}
+
+@available(iOS 15.0, *)
+public extension Intakeable {
     init(intakes: Intakes) {
         self.init()
         self.intakes = intakes
@@ -121,7 +130,7 @@ public extension Intakeable {
 }
 
 @available(iOS 15.0, *)
-public protocol Intakeables: Multipliable, NQIconvertible, Scalable, DailyValueScaleable {
+public protocol Intakeables: Summable, Multipliable, NQIconvertible, Scalable, DailyValueScaleable {
     var intakes: OrderedDictionary<Nutrient.Kind, any Intakeable> { get set }
     var nqi: Double { get }
     
@@ -193,6 +202,27 @@ public struct NutrientIntakes: Intakeables {
     
     public typealias Intakes = OrderedDictionary<Nutrient.Kind, any Intakeable>
     public var intakes: Intakes
+    
+    public var macros: MacroIntakes {
+        intakes[.macro] as! MacroIntakes
+    }
+    
+    public var vitamins: VitaminIntakes {
+        intakes[.vitamin] as! VitaminIntakes
+    }
+    
+    public var minerals: MineralIntakes {
+        intakes[.mineral] as! MineralIntakes
+    }
+    
+    mutating public func add(_ other: Self) {
+        let macroIntakes = macros + other.macros
+        let vitaminIntakes = vitamins + other.vitamins
+        let mineralIntakes = minerals + other.minerals
+        self.intakes[.macro] = macroIntakes
+        self.intakes[.vitamin] = vitaminIntakes
+        self.intakes[.mineral] = mineralIntakes
+    }
     
     mutating public func multiply(_ factor: Double) {
         self.intakes = [
