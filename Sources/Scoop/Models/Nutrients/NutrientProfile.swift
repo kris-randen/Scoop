@@ -299,14 +299,14 @@ public struct NutrientProfileServed: ServeableNutrientProfile {
 
 @available(iOS 15.0, *)
 public struct Profiles {
-    static let dict: [String: NutrientProfile] = [
+    public static let dict: [String: NutrientProfile] = [
                 "boost": boostHighProteinDrink,
                 "boost high protein drink": boostHighProteinDrink,
                 "sugar": sugarWhite,
                 "arugula": arugula,
                 "carrot": carrot
     ]
-    static let profile = NutrientProfile(
+    public static let profile = NutrientProfile(
         intakes: NutrientIntakes(intakes: [
             .vitamin: VitaminIntakes(intakes: [
                 .a: 900, .c: 90, .d: 20, .e: 15, .k: 120, .b1: 1.2, .b2: 1.3,
@@ -322,7 +322,7 @@ public struct Profiles {
         ]), description: "Daily Value",
         type: .value)
     
-    static let boostHighProteinDrink = NutrientProfile(
+    public static let boostHighProteinDrink = NutrientProfile(
         intakes: NutrientIntakes(intakes: [
             .vitamin: VitaminIntakes(intakes: [
                 .a: 1.6, .c: 8, .d: 4.8, .e: 8, .k: 2, .b1: 2, .b2: 3.2,
@@ -338,7 +338,7 @@ public struct Profiles {
         ]), description: Constants.Food.boostHighProteinDrink,
         type: .nqi)
     
-    static let sugarWhite = NutrientProfile(
+    public static let sugarWhite = NutrientProfile(
         intakes: NutrientIntakes(intakes: [
             .vitamin: VitaminIntakes(intakes: [
                 .a: 0, .c: 0, .d: 0, .e: 0, .k: 0, .b1: 0, .b2: 0,
@@ -354,7 +354,7 @@ public struct Profiles {
         ]), description: Constants.Food.sugarWhite,
         type: .nqi)
     
-    static let arugula = NutrientProfile(
+    public static let arugula = NutrientProfile(
         intakes: NutrientIntakes(intakes: [
             .vitamin: VitaminIntakes(intakes: [
                 .a: 10.6, .c: 13.3, .d: 0, .e: 0, .k: 72.7, .b1: 2.9, .b2: 5.3,
@@ -370,7 +370,7 @@ public struct Profiles {
         ]), description: Constants.Food.arugula,
         type: .nqi)
     
-    static let carrot = NutrientProfile(intakes: NutrientIntakes(intakes: [
+    public static let carrot = NutrientProfile(intakes: NutrientIntakes(intakes: [
         .macro: MacroIntakes(intakes: [
             .carbs: 1.70,
             .fiber: 4.88,

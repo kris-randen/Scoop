@@ -51,23 +51,23 @@ public struct Chart {
             self.init(nutrient: nutrient as MacroIntakes.NutrientKey, intake: intake, kind: .macro, scaled: scaled)
         }
         
-        var legend: String {
+        public var legend: String {
             guard value != 0 else { return name }
             return nutrient.required ? "Required" : "Allowed"
         }
         
-        var color: Color {
+        public var color: Color {
             guard value != 0 else { return Color.black }
             return nutrient.required ? Colors.scoopGreen : Color.black
         }
         
-        var legendColor: Color {
+        public var legendColor: Color {
             guard value != 0 else { return Colors.scoopBlue }
             return nutrient.required ? Colors.scoopRed : Color.black
         }
     }
     
-    static let zeroVitaminBars = [
+    public static let zeroVitaminBars = [
         Bar(nutrient: .a, intake: 0, scaled: 0),
         Bar(nutrient: .d, intake: 0, scaled: 0),
         Bar(nutrient: .e, intake: 0, scaled: 0),
@@ -84,7 +84,7 @@ public struct Chart {
         Bar(nutrient: .b7, intake: 0, scaled: 0)
     ]
     
-    static let zeroMineralBars = [
+    public static let zeroMineralBars = [
         Bar(nutrient: .Na, intake: 0, scaled: 0),
         Bar(nutrient: .Fe, intake: 0, scaled: 0),
         Bar(nutrient: .Mg, intake: 0, scaled: 0),
@@ -102,7 +102,7 @@ public struct Chart {
         Bar(nutrient: .Cl, intake: 0, scaled: 0)
     ]
     
-    static let zeroMacroBars = [
+    public static let zeroMacroBars = [
         Bar(nutrient: .sugar, intake: 0, scaled: 0),
         Bar(nutrient: .cholesterol, intake: 0, scaled: 0),
         Bar(nutrient: .transFat, intake: 0, scaled: 0),
@@ -111,16 +111,16 @@ public struct Chart {
         Bar(nutrient: .fiber, intake: 0, scaled: 0)
     ]
     
-    static func zeroBars(for nutrients: [any NutrientType], kind: Nutrient.Kind) -> [Bar] {
+    public static func zeroBars(for nutrients: [any NutrientType], kind: Nutrient.Kind) -> [Bar] {
         nutrients.map {Bar.init(nutrient: $0, intake: 0, kind: kind, scaled: 0)}
     }
     
-    static func bars(for intakes: some Intakeable, kind: Nutrient.Kind) -> [Bar] {
+    public static func bars(for intakes: some Intakeable, kind: Nutrient.Kind) -> [Bar] {
 //        return intakes.intakes.sortedByValues(ascending: false).map { Bar.init(nutrient: $0, intake: $1, kind: kind) }
         return intakes.intakes.map { Bar.init(nutrient: $0, intake: $1, kind: kind) }
     }
     
-    static func barsAll(for intakes: some Intakeable, kind: Nutrient.Kind) -> [Bar] {
+    public static func barsAll(for intakes: some Intakeable, kind: Nutrient.Kind) -> [Bar] {
         switch kind {
         case .vitamin:
             guard let intakes = intakes as? VitaminIntakes else { return Chart.zeroVitaminBars }
@@ -139,7 +139,7 @@ public struct Chart {
         }
     }
     
-    static func nutrientsComplement(for intakes: some Intakeable, kind: Nutrient.Kind) -> [any NutrientType] {
+    public static func nutrientsComplement(for intakes: some Intakeable, kind: Nutrient.Kind) -> [any NutrientType] {
         switch kind {
         case .vitamin:
             let allVitamins = Nutrient.Micro.Vitamin.allCases
@@ -169,7 +169,7 @@ public struct Chart {
     var bars = [Bar]()
     let kind: Nutrient.Kind
     
-    init(profile: NutrientProfile, kind: Nutrient.Kind, nqi: Double = 0) {
+    public init(profile: NutrientProfile, kind: Nutrient.Kind, nqi: Double = 0) {
         self.item = profile.description.lowercased().capitalized
         self.nqi = profile.nqi
         self.title = kind.chartTitle

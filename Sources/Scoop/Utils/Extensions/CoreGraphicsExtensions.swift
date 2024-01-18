@@ -191,7 +191,7 @@ public extension RoundedRectProperties {
 
 @available(iOS 15.0, *)
 public extension CGRect {
-    public enum Orientation {
+    enum Orientation {
         case vertical
         case horizontal
     }

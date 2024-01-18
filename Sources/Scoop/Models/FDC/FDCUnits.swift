@@ -6,7 +6,6 @@
 //
 
 import Foundation
-//import Collections
 import OrderedCollections
 
 public typealias FDCUnit = String
@@ -119,7 +118,6 @@ public struct FDCUnits {
     public static func nutrientIntakes(from intakes: [FDCfoodNutrientIntake]) -> NutrientIntakes {
         NutrientIntakes(intakes: [
             .macro: macroIntakes(from: intakes),
-//            .macro: vitaminIntakes(from: intakes),
             .vitamin: vitaminIntakes(from: intakes),
             .mineral: mineralIntakes(from: intakes)
         ])
@@ -128,7 +126,6 @@ public struct FDCUnits {
     public static func nutrientIntakesAll(from intakes: [FDCfoodNutrientIntake]) -> NutrientIntakes {
         NutrientIntakes(intakes: [
             .macro: macroIntakesAll(from: intakes),
-//            .macro: vitaminIntakesAll(from: intakes),
             .vitamin: vitaminIntakesAll(from: intakes),
             .mineral: mineralIntakesAll(from: intakes)
         ])

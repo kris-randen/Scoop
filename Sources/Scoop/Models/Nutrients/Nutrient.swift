@@ -142,11 +142,11 @@ public struct Nutrient {
             }
         }
         
-        var name: String { self.rawValue }
+        public var name: String { self.rawValue }
         
-        var navigationTitle: String { self.name + " " + "Profile" }
+        public var navigationTitle: String { self.name + " " + "Profile" }
         
-        func toggle() -> Kind {
+        public func toggle() -> Kind {
             switch self {
             case .vitamin: .mineral
             case .mineral: .macro
@@ -156,19 +156,19 @@ public struct Nutrient {
         }
     }
     
-    static let fdcMap: FDCMap = Dictionary.merge(dicts: [
+    public static let fdcMap: FDCMap = Dictionary.merge(dicts: [
         Nutrient.Macro.fdcMap,
         Nutrient.Micro.Vitamin.fdcMap,
         Nutrient.Micro.Mineral.fdcMap
     ])
     
-    static let fdcMapper: [Nutrient.Kind: FDCMap] = [
+    public static let fdcMapper: [Nutrient.Kind: FDCMap] = [
         Nutrient.Kind.macro : Nutrient.Macro.fdcMap,
         Nutrient.Kind.vitamin: Nutrient.Micro.Vitamin.fdcMap,
         Nutrient.Kind.mineral: Nutrient.Micro.Mineral.fdcMap
     ]
     
-    static var zeroIntakes: NutrientIntakes {
+    public static var zeroIntakes: NutrientIntakes {
         NutrientIntakes(intakes: [
             .macro : Macro.zeroIntakes,
             .vitamin: Micro.Vitamin.zeroIntakes,
@@ -503,10 +503,10 @@ public struct Nutrient {
                 }
             }
             
-            static let fdcMap: FDCMap = Constants.Nutrients.FDCmap.vitamin
+            public static let fdcMap: FDCMap = Constants.Nutrients.FDCmap.vitamin
             
             
-            func DRI(nutrient: Nutrient.Micro.Vitamin, gender: Demography.GenderAndLifeStage, group: Demography.AgeGroup) -> Double {
+            public func DRI(nutrient: Nutrient.Micro.Vitamin, gender: Demography.GenderAndLifeStage, group: Demography.AgeGroup) -> Double {
                 0
             }
             

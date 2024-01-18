@@ -31,7 +31,6 @@ public enum NutrientValueType {
     case value
     case scaled
     case nqi
-//    case nmb
 }
 
 @available(iOS 15.0, *)

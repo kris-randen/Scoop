@@ -89,10 +89,10 @@ public protocol Callable {
 }
 
 public struct Address: Codable, Equatable {
-    var apartment: String = ""
-    var street: String = ""
-    var city: String = ""
-    var state: String = ""
+    public var apartment: String = ""
+    public var street: String = ""
+    public var city: String = ""
+    public var state: String = ""
 }
 
 public protocol Imageable {

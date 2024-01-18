@@ -197,19 +197,19 @@ public struct Labels {
     public static let userNameLabelFont: Font = Font.headline.weight(.semibold)
     public static let search: some View = image(for: .search)
     
-    static func image(for label: LabelType) -> some View {
+    public static func image(for label: LabelType) -> some View {
         image(for: label, withColor: .black)
     }
     
-    static func image(for label: LabelType, withColor color: Color) -> some View {
+    public static func image(for label: LabelType, withColor color: Color) -> some View {
         Image(systemName: label.rawValue).foregroundColor(color)
     }
     
-    static func image(for label: LabelType, withFont: Font, withColor color: Color) -> some View {
+    public static func image(for label: LabelType, withFont: Font, withColor color: Color) -> some View {
         image(for: label, withColor: color)
     }
     
-    static func roundButton(for label: LabelType, backgroundColor: Color, foregroundColor: Color) -> some View {
+    public static func roundButton(for label: LabelType, backgroundColor: Color, foregroundColor: Color) -> some View {
         ZStack {
             Circle()
                 .foregroundColor(backgroundColor)
