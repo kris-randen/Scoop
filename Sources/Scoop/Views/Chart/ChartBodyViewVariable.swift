@@ -12,6 +12,13 @@ public struct ChartBodyViewVariable: View {
     var chart: Chart
     var size: CGSize
     var orientation: Chart.Orientation
+    
+    public init(chart: Chart, size: CGSize, orientation: Chart.Orientation) {
+        self.chart = chart
+        self.size = size
+        self.orientation = orientation
+    }
+    
     public var body: some View {
         HStack(alignment: .bottom) {
             AxisTitlesView(chart: chart)

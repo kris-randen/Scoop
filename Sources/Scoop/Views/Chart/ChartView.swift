@@ -12,6 +12,11 @@ public struct ChartView: View {
     var chart: Chart
     var size: CGSize
     
+    public init(chart: Chart, size: CGSize) {
+        self.chart = chart
+        self.size = size
+    }
+    
     public var body: some View {
         VStack {
             ChartTitleView(chart: chart)

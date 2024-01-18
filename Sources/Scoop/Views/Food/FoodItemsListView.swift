@@ -18,7 +18,7 @@ public struct FoodItemsListView: View {
     @State var loading: Bool = false
     @State var navigate = false
     
-    init() {
+    public init() {
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont(name: "Avenir Next Bold", size: 18)!, .foregroundColor: UIColor(Colors.scoopRed)]
     }
     

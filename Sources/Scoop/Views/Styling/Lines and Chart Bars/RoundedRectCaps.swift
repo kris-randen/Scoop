@@ -11,6 +11,10 @@ import SwiftUI
 public struct RoundedRectCaps: View {
     var line: RoundedRect
     
+    public init(line: RoundedRect) {
+        self.line = line
+    }
+    
     public var body: some View {
         ZStack {
             RoundedRectTopRightCap(line: line)

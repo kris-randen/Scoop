@@ -11,6 +11,10 @@ import SwiftUI
 public struct Line: View {
     var line: CGRect
     
+    public init(line: CGRect) {
+        self.line = line
+    }
+    
     public var body: some View {
         Path { path in
             path.move(to: line.topLeftGlobal)

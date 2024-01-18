@@ -11,7 +11,7 @@ import Combine
 
 @available(iOS 15.0, *)
 @MainActor
-class FoodItemsListViewModel: ObservableObject {
+public class FoodItemsListViewModel: ObservableObject {
     //MARK: - Published properties that FoodItemsListView can bind to
     @Published var profile: NutrientProfile?
     @Published var isLoading: Bool = false
@@ -20,7 +20,7 @@ class FoodItemsListViewModel: ObservableObject {
     private var fdcService = FDCFoodServiceNew()
     
     //MARK: - Methods for fetching and updating data
-    func fetchNutritionInfo(for foodItem: String) async {
+    public func fetchNutritionInfo(for foodItem: String) async {
         isLoading = true
         defer { isLoading = false } ///Ensure loading is set to false when done
         profile = await fdcService.fetchNutritionInfo(for: foodItem)

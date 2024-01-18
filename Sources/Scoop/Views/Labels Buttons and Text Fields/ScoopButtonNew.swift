@@ -13,6 +13,12 @@ public struct ScoopButtonNew: View {
     var food: String
     @Binding var navigate: Bool
     
+    public init(vm: FoodItemsListViewModel, food: String, navigate: Binding<Bool>) {
+            self.vm = vm
+            self.food = food
+            self._navigate = navigate
+        }
+    
     public var body: some View {
         Button {
             Task {

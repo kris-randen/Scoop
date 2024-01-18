@@ -11,6 +11,10 @@ import SwiftUI
 public struct RoundedRectBottomRightCap: View {
     var line: RoundedRect
     
+    public init(line: RoundedRect) {
+        self.line = line
+    }
+    
     public var body: some View {
         Path { path in
             path.move(to: line.bottomRightCenterGlobal)

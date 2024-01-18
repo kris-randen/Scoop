@@ -9,11 +9,17 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 public struct FlexibleVerticalLine: View {
-//    var orientation: CGRect.Orientation
     var alignment = Alignment(horizontal: .center, vertical: .center)
     var offset = CGPoint(x: 25, y: 25)
     var lengthScaling = CGFloat(1)
     var width = CGFloat(10)
+    
+    public init(alignment: Alignment = Alignment(horizontal: .center, vertical: .center), offset: CGPoint = CGPoint(x: 25, y: 25), lengthScaling: CGFloat = CGFloat(1), width: CGFloat = CGFloat(10)) {
+        self.alignment = alignment
+        self.offset = offset
+        self.lengthScaling = lengthScaling
+        self.width = width
+    }
     
     public var body: some View {
         GeometryReader { geo in

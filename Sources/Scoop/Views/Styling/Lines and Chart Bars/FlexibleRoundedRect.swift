@@ -15,6 +15,14 @@ public struct FlexibleRoundedRect: View {
     var width = CGFloat(50)
     var radiusScaling: CGFloat
     
+    public init(orientation: CGRect.Orientation, alignment: Alignment, scaling: CGFloat, width: CGFloat = CGFloat(50), radiusScaling: CGFloat) {
+        self.orientation = orientation
+        self.alignment = alignment
+        self.scaling = scaling
+        self.width = width
+        self.radiusScaling = radiusScaling
+    }
+    
     public var body: some View {
         GeometryReader { geo in
             RoundedRectView(line: line(geo: geo))
@@ -71,13 +79,5 @@ public struct FlexibleRoundedRect: View {
             }
         }
         return RoundedRect(x: x, y: y, width: lineWidth, height: lineHeight, radiusScaling: radiusScaling, orientation: orientation)
-    }
-}
-
-@available(iOS 15.0.0, *)
-public struct FlexibleRoundedRect_Previews: PreviewProvider {
-    public static var previews: some View {
-        FlexibleRoundedRect(orientation: .horizontal, alignment: .leading, radiusScaling: 0.4)
-            .padding()
     }
 }

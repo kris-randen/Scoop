@@ -14,6 +14,13 @@ public struct ScoopButton: View {
     @Binding var loading: Bool
     @Binding var navigate: Bool
     
+    public init(food: String, profile: Binding<NutrientProfile>, loading: Binding<Bool>, navigate: Binding<Bool>) {
+            self.food = food
+            self._profile = profile
+            self._loading = loading
+            self._navigate = navigate
+        }
+    
     public var body: some View {
         Button {
             Task {

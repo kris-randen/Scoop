@@ -9,6 +9,9 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 public struct CardView: View {
+    
+    public init() {}
+    
     public var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)

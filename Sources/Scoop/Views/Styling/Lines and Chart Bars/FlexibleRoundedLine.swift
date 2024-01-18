@@ -14,6 +14,13 @@ public struct FlexibleRoundedLine: View {
     var scaling: CGFloat = 0.8
     var width = CGFloat(50)
     
+    public init(orientation: CGRect.Orientation, alignment: Alignment = .center, scaling: CGFloat = CGFloat(0.8), width: CGFloat = CGFloat(50)) {
+        self.orientation = orientation
+        self.alignment = alignment
+        self.scaling = scaling
+        self.width = width
+    }
+    
     public var body: some View {
         GeometryReader { geo in
             RoundedLineView(line: line(geo: geo), orientation: orientation)
@@ -67,12 +74,5 @@ public struct FlexibleRoundedLine: View {
             }
         }
         return CGRect(x: x, y: y, width: lineWidth, height: lineHeight)
-    }
-}
-
-@available(iOS 15.0, *)
-public struct FlexibleRoundedLine_Previews: PreviewProvider {
-    public static var previews: some View {
-        FlexibleRoundedLine(orientation: .horizontal, alignment: .leading)
     }
 }

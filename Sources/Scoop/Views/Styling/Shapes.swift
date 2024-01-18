@@ -10,6 +10,6 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 public struct Shapes {
-    static let textField: Modifiers.Shapes = .rectangle(cornerRadiusScaling: Dimensions.CornerRadiusScaling.textField)
-    static let picker: Modifiers.Shapes = .rectangle(cornerRadiusScaling: Dimensions.CornerRadiusScaling.textField)
+    public static let textField: Modifiers.Shapes = .rectangle(cornerRadiusScaling: Dimensions.CornerRadiusScaling.textField)
+    public static let picker: Modifiers.Shapes = .rectangle(cornerRadiusScaling: Dimensions.CornerRadiusScaling.textField)
 }

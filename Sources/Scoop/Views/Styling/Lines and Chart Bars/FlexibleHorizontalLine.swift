@@ -13,6 +13,12 @@ public struct FlexibleHorizontalLine: View {
     var lengthScaling = CGFloat(0.5)
     var width = CGFloat(10)
     
+    public init(offset: CGPoint = CGPoint(x: 25, y: 25), lengthScaling: CGFloat = CGFloat(0.5), width: CGFloat = CGFloat(10)) {
+        self.offset = offset
+        self.lengthScaling = lengthScaling
+        self.width = width
+    }
+    
     public var body: some View {
         GeometryReader { geo in
             Path { path in

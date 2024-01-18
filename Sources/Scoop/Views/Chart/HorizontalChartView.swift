@@ -16,6 +16,12 @@ public struct HorizontalChartView: View {
         .horizontal
     }
     
+    public init(kind: Binding<Nutrient.Kind>, serving: Binding<Serving.Kind>, profile: NutrientProfile) {
+            self._kind = kind
+            self._serving = serving
+            self.profile = profile
+        }
+    
     var scaled: NutrientProfile {
         switch serving {
         case .gm100:
@@ -48,7 +54,7 @@ public struct HorizontalChartView: View {
             .navigationTitle(kind.navigationTitle)
             switch serving {
             case .gm100, .kcal2000:
-                ProfileAndServingToggleView(shape: Shapes.textField, kind: $kind, serving: $serving)
+                ProfileAndServingToggleView(kind: $kind, serving: $serving, shape: Shapes.textField)
             case .list:
                 ProfileToggleView(kind: $kind)
             }

@@ -11,6 +11,12 @@ import SwiftUI
 public struct LineCaps: View {
     var line: CGRect
     var orientation: CGRect.Orientation
+    
+    public init(line: CGRect, orientation: CGRect.Orientation) {
+        self.line = line
+        self.orientation = orientation
+    }
+    
     var radius: CGFloat {
         switch orientation {
         case .vertical:

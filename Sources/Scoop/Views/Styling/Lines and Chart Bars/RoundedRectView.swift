@@ -10,6 +10,11 @@ import SwiftUI
 @available(iOS 15.0.0, *)
 public struct RoundedRectView: View {
     var line: RoundedRect
+    
+    public init(line: RoundedRect) {
+        self.line = line
+    }
+    
     public var body: some View {
         ZStack(alignment: .leading) {
             RoundedRectCore(line: line)

@@ -9,6 +9,8 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 public struct ProfileView: View {
+    public init() {}
+    
     public var body: some View {
         ZStack {
             GeometryReader { geo in

@@ -10,6 +10,11 @@ import SwiftUI
 @available(iOS 15.0, *)
 public struct ChartTitleView: View {
     var chart: Chart
+    
+    public init(chart: Chart) {
+        self.chart = chart
+    }
+    
     public var body: some View {
         HStack(alignment: .lastTextBaseline) {
             Spacer()

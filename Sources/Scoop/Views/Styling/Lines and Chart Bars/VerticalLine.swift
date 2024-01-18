@@ -12,6 +12,13 @@ public struct VerticalLine: View {
     var origin = CGPoint(x: 25, y: 25)
     var length = CGFloat(500)
     var width = CGFloat(10)
+    
+    public init(origin: CGPoint = CGPoint(x: 25, y: 25), length: CGFloat = CGFloat(500), width: CGFloat = CGFloat(10)) {
+        self.origin = origin
+        self.length = length
+        self.width = width
+    }
+    
     public var body: some View {
         Path { path in
             path.move(to: origin)

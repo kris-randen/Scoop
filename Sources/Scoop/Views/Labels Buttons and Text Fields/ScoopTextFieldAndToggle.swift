@@ -17,8 +17,8 @@ public struct ScoopTextFieldAndToggle: View {
 
     public var body: some View {
         VStack {
-            ScoopTextField(shape: shape, text: $text, kind: $kind)
-            ProfileAndServingToggleView(shape: shape, kind: $kind, serving: $serving)
+            ScoopTextField(text: $text, kind: $kind)
+            ProfileAndServingToggleView(kind: $kind, serving: $serving, shape: shape)
         }
         .foregroundColor(Colors.scoopRed)
         .disableAutocorrection(true)

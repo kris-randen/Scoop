@@ -9,8 +9,14 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 public struct ProfileToggleView: View {
-    var shape = Shapes.textField
     @Binding var kind: Nutrient.Kind
+    var shape = Shapes.textField
+    
+    public init(kind: Binding<Nutrient.Kind>, shape: Modifiers.Shapes = Shapes.textField) {
+            self._kind = kind
+            self.shape = shape
+        }
+    
     public var body: some View {
         HStack {
             Text("profile")

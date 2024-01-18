@@ -18,6 +18,10 @@ public struct RoundedRectCore: View {
     
     var line: RoundedRect
     
+    public init(line: RoundedRect) {
+        self.line = line
+    }
+    
     public var body: some View {
         ZStack {
             center(line: line)

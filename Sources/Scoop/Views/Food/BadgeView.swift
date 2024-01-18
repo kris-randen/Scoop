@@ -11,6 +11,10 @@ import SwiftUI
 public struct BadgeView: View {
     var badge: Badge
     
+    public init(badge: Badge) {
+        self.badge = badge
+    }
+    
     public var body: some View {
         HStack {
             Text(badge.text)

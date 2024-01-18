@@ -9,8 +9,14 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 public struct ServingToggleView: View {
-    var shape = Shapes.textField
     @Binding var serving: Serving.Kind
+    var shape = Shapes.textField
+    
+    public init(serving: Binding<Serving.Kind>, shape: Modifiers.Shapes = Shapes.textField) {
+        self._serving = serving
+        self.shape = shape
+    }
+    
     public var body: some View {
         HStack {
             Text("serving")
