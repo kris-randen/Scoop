@@ -30,13 +30,15 @@ public struct AddGroceryItemCellView: View {
                     unit = unit.toggle()
                 } label: {
                     BadgeView(badge: Badge(kind: .mass(unit: unit)))
-                        .textFieldify(withHeightScaling: Dimensions.HeightScaling.textField)
                 }
                 .frame(width: Constants.Width / 7)
             }
             .foregroundColor(Colors.scoopRed)
         }
-        .textFieldify(withHeightScaling: Dimensions.HeightScaling.textField / 3)
-        .padding()
     }
+}
+
+@available(iOS 16.0, *)
+#Preview {
+    AddGroceryItemCellView(item: .constant("Tomato"), quantity: .constant(1.3), unit: .constant(.kg))
 }

@@ -9,6 +9,18 @@ import SwiftUI
 import Foundation
 
 @available(iOS 15.0, *)
+typealias CNutrients = Constants.Nutrients
+@available(iOS 15.0, *)
+typealias CNName = CNutrients.Name
+@available(iOS 15.0, *)
+typealias CNDisplay = CNutrients.Display
+@available(iOS 15.0, *)
+typealias CNCompound = CNutrients.Compound
+@available(iOS 15.0, *)
+typealias CNFDCid = Constants.Nutrients.FDCid
+
+
+@available(iOS 15.0, *)
 public struct Constants {
     public static let space = " "
     public static let colon = ":"

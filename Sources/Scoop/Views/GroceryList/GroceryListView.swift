@@ -39,28 +39,20 @@ public struct GroceryListView: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
-                        HStack {
-                            Spacer()
-                            Button(action: add) {
-                                Image(systemName: "mic.fill.badge.plus")
-                                    .font(.title)
-                            }
-                            .foregroundColor(Colors.scoopRed)
-                            Spacer()
+                        Button(action: add) {
+                            Image(systemName: "mic.fill.badge.plus")
+                                .font(.title)
                         }
+                        .foregroundColor(Colors.scoopRed)
                     }
                 }
-                Text("Expected Consumption Period (in **Days**)")
-                    .textFieldify(withHeightScaling: Dimensions.HeightScaling.textField)
-                    .font(Fonts.signInTextField)
-                    .borderify(shape: Shapes.textField, color: Colors.scoopYellow)
-                    .clippify(shape: Shapes.textField)
-                    .shadowify()
-                    .foregroundColor(Colors.scoopRed)
+                ScoopTextLabel(text: "Consumption Period (in Days)")
+                    .padding()
                 ScoopNumField(value: $consumedOver)
                     .frame(width: Constants.Width / 8)
                     .multilineTextAlignment(.center)
                     .fontWeight(.black)
+                    .padding()
                 Button {
                     Task {
                         await nvm.fetchNutritionalInfo(for: gvm.items, consumedOver: consumedOver)
@@ -69,7 +61,7 @@ public struct GroceryListView: View {
                 } label: {
                     ScoopButtonLabelView()
                 }
-                .padding(.horizontal)
+                .padding()
                 if let profile = nvm.aggregatedProfile {
                     NavigationLink("", destination: HorizontalChartView(kind: $kind, serving: $serving, profile: profile), isActive: $navigate)
                 }
@@ -103,4 +95,9 @@ extension GroceryItem {
     var unitDescription: String {
         "\(unit.name)"
     }
+}
+
+@available(iOS 16.0, *)
+#Preview {
+    GroceryListView()
 }

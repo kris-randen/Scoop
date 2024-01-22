@@ -24,7 +24,6 @@ public struct ScoopTextLabel: View {
         .borderify(shape: shape, color: Colors.scoopYellow)
         .clippify(shape: shape)
         .shadowify()
-        .fontWeight(.black)
         .foregroundColor(Colors.scoopRed)
     }
 }

@@ -5,15 +5,7 @@
 //  Created by Krishnaswami Rajendren on 12/23/23.
 //
 
-//
-//  NutrientProfile.swift
-//  messaging
-//
-//  Created by Krishnaswami Rajendren on 12/14/23.
-//
-
 import Foundation
-//import Collections
 import OrderedCollections
 
 @available(iOS 15.0, *)
