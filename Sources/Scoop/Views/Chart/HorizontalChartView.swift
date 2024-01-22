@@ -25,7 +25,7 @@ public struct HorizontalChartView: View {
     var scaled: NutrientProfile {
         switch serving {
         case .gm100:
-            profile.scaledByDV().scaledTo(servingSize:Serving(value: 100, unit: .gm))
+            profile.scaledByDV().scaledTo(servingSize:Serving.Mass(value: 100, unit: .gm))
         case .kcal2000:
             profile.convertedToNQI()
         case .list:

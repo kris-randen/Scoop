@@ -21,7 +21,7 @@ public struct FoodNutrientParser {
     
     public static func select(from foods: [FDCFood]) -> FDCFood? { foods.first }
     
-    public static func extract(from food: FDCFood) -> Serving {
+    public static func extract(from food: FDCFood) -> Serving.Mass {
         Serving.get(from: food)
     }
     

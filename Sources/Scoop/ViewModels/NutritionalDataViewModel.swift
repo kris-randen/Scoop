@@ -40,7 +40,7 @@ class NutritionalDataViewModel: ObservableObject {
         try await withThrowingTaskGroup(of: NutrientProfile.self) { group in
             for item in items {
                 group.addTask {
-                    let serving = Serving(value: item.quantity, unit: item.unit)
+                    let serving = Serving.Mass(value: item.quantity, unit: item.unit)
                     return await self.fdcService.fetchNutritionInfo(for: item.name, at: serving) 
                 }
             }

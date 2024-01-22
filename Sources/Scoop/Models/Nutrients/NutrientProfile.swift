@@ -13,7 +13,7 @@ public protocol NutrientProfileable: Summable, Multipliable {
     var description: String { get }
     var type: NutrientValueType { get }
     var intakes: NutrientIntakes { get set }
-    var serving: Serving { get set }
+    var serving: Serving.Mass { get set }
     var nqi: Double { get }
     var energy: Energy { get set }
 }
@@ -42,7 +42,7 @@ public extension NutrientProfileable {
     }
     
     mutating func multiply(_ factor: Double) {
-        serving = Serving(value: serving.value * factor, unit: serving.unit)
+        serving = Serving.Mass(value: serving.value * factor, unit: serving.unit)
         intakes = factor * intakes
     }
     
@@ -194,7 +194,7 @@ public extension NutrientProfileable {
 
 @available(iOS 15.0, *)
 public protocol ServeableNutrientProfile: NutrientProfileable {
-    var serving: Serving { get set }
+    var serving: Serving.Mass { get set }
 }
 
 @available(iOS 15.0, *)
@@ -202,7 +202,7 @@ public struct NutrientProfile: NutrientProfileable, NQIconvertible, Scalable, Da
     public var intakes: NutrientIntakes
     public var description: String = "Grocery List"
     public var type: NutrientValueType = .value
-    public var serving: Serving = Serving()
+    public var serving: Serving.Mass = Serving.Mass()
     public var energy = Energy()
     
     public init() {
@@ -213,7 +213,7 @@ public struct NutrientProfile: NutrientProfileable, NQIconvertible, Scalable, Da
         intakes: NutrientIntakes = NutrientIntakes(),
         description: String = "Grocery List",
         type: NutrientValueType = .value,
-        serving: Serving = Serving(),
+        serving: Serving.Mass = Serving.Mass(),
         energy: Energy = Energy()) {
             self.intakes = intakes
             self.description = description
@@ -237,7 +237,7 @@ public extension NutrientProfile {
         return self.convertedToNQI(for: self.energy)
     }
     
-    func scaledTo(servingSize: Serving) -> Self {
+    func scaledTo(servingSize: Serving.Mass) -> Self {
         let factor = serving.factor(to: servingSize)
         return scaledTo(factor: factor)
     }
@@ -327,7 +327,7 @@ extension Dictionary: Multipliable where Value: Multipliable {
 @available(iOS 15.0, *)
 public struct NutrientProfileServed: ServeableNutrientProfile {
     public var intakes: NutrientIntakes
-    public var serving: Serving = Serving(value: 100, unit: .gm)
+    public var serving: Serving.Mass = Serving.Mass(value: 100, unit: .gm)
     public var description: String
     public var type: NutrientValueType
     public var energy: Energy = Energy()

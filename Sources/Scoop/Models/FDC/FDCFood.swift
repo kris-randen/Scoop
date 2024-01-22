@@ -25,6 +25,6 @@ public struct FDCFood: Decodable {
     
     public var energy: Energy {
         let foodNutrient = foodNutrients.first { $0.nutrientName.lowercased() == "energy" }!
-        return Energy(unit: .kcal, value: foodNutrient.value)
+        return Energy(value: foodNutrient.value, unit: .kcal)
     }
 }
